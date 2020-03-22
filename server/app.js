@@ -8,6 +8,7 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var users = require("./routes/api/users");
 var boards = require("./routes/api/boards");
+var cors = require('cors')
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -19,9 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + '../client/build/index.html'));
-});
+
 
 const db = require("./config/keys").mongoURI;
 mongoose
@@ -36,5 +35,7 @@ mongoose
   require("./config/passport")(passport);
   app.use("/users", users);
   app.use("/boards", boards);
-
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname , '../client/build/index.html'));
+  });
 module.exports = app;

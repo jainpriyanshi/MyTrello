@@ -61,10 +61,12 @@ router.post("/createboard", (req, res) => {
   });
 
   router.get('/getboards', function(req, res){
+    console.log("hey");
     User.find({}).then(docs => {
       res.send(docs);
-
+      console.log(docs);
     })
+    
   });
   router.get('/getlist', function(req, res){
     Board.find({}).then(docs => {
