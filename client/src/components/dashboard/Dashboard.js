@@ -10,7 +10,7 @@ class Dashboard extends Component {
     boardname: ""
    };
    componentDidMount() {
-    axios.get('https://morning-fjord-39504.herokuapp.com/boards/getboards')
+    axios.get('/boards/getboards')
     .then((response) => {
         this.setState({array : response.data});
     });
@@ -26,9 +26,9 @@ class Dashboard extends Component {
         };
         console.log(board)
       axios
-      .post("https://morning-fjord-39504.herokuapp.com/boards/createboard", board)
+      .post("/boards/createboard", board)
  
-      axios.get('https://morning-fjord-39504.herokuapp.com/boards/getboards')
+      axios.get('/boards/getboards')
       .then((response) => {
           this.setState({array : response.data});
       });

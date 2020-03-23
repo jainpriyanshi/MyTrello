@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
       auth.isAuthenticated === true ? (
         <Component {...props} />
       ) : (
-        <Redirect to="https://morning-fjord-39504.herokuapp.com/login" />
+        <Redirect to="/login" />
       )
     }
   />

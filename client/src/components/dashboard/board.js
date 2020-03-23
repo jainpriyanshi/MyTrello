@@ -10,7 +10,7 @@ class Board extends Component {
     listname: ""
    };
    componentDidMount() {
-    axios.get('https://morning-fjord-39504.herokuapp.com/boards/getlist')
+    axios.get('/boards/getlist')
     .then((response) => {
         this.setState({array : response.data});
     });
@@ -27,9 +27,9 @@ class Board extends Component {
         };
         console.log(list)
       axios
-      .post("https://morning-fjord-39504.herokuapp.com/boards/createlist", list)
+      .post("/boards/createlist", list)
 
-      axios.get('https://morning-fjord-39504.herokuapp.com/boards/getlist')
+      axios.get('/boards/getlist')
       .then((response) => {
           this.setState({array : response.data});
       });

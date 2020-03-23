@@ -21,16 +21,16 @@ class List extends Component {
         };
         console.log(task)
       axios
-      .post("https://morning-fjord-39504.herokuapp.com/boards/createtask", task)
+      .post("/boards/createtask", task)
 
-      axios.get('https://morning-fjord-39504.herokuapp.com/boards/gettask')
+      axios.get('/boards/gettask')
       .then((response) => {
           this.setState({array : response.data});
       });
     };
    componentDidMount() {
     console.log(this.props.location.state.id);
-    axios.get('https://morning-fjord-39504.herokuapp.com/boards/gettask')
+    axios.get('/boards/gettask')
     .then((response) => {
         this.setState({array : response.data});
     });
