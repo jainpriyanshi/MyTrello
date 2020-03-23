@@ -28,7 +28,7 @@ class Board extends Component {
         console.log(list)
       axios
       .post("/boards/createlist", list)
-
+      .then(res => this.props.history.push("/patient/login"))
       axios.get('/boards/getlist')
       .then((response) => {
           this.setState({array : response.data});

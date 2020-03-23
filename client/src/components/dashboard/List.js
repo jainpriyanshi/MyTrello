@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios"
 import {Link} from "react-router-dom";
+import Checkbox from '@material-ui/core/Checkbox';
 
 class List extends Component {
   state = {
@@ -22,7 +23,7 @@ class List extends Component {
         console.log(task)
       axios
       .post("/boards/createtask", task)
-
+      .then(res => this.props.history.push("/patient/login"))
       axios.get('/boards/gettask')
       .then((response) => {
           this.setState({array : response.data});
@@ -49,8 +50,12 @@ class List extends Component {
             <div >
                 
               <b style={{textSize: "20px"}}> {b.name} </b>
-            
               
+              <Checkbox
+        defaultChecked
+        color="default"
+        inputProps={{ 'aria-label': 'checkbox with default color' }}
+      />
             </div>
             )
           )

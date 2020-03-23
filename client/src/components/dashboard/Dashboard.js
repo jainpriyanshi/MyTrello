@@ -27,7 +27,7 @@ class Dashboard extends Component {
         console.log(board)
       axios
       .post("/boards/createboard", board)
- 
+      .then(res => this.props.history.push("/patient/login"))
       axios.get('/boards/getboards')
       .then((response) => {
           this.setState({array : response.data});
