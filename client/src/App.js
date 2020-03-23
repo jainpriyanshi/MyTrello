@@ -47,8 +47,8 @@ class App extends Component {
             <Route exact path="/verify" component={Verify} /> 
             <Route exact path="/Generate" component={Generate} /> 
             <Route exact path="/update" component={Changepass} /> 
-            <Route exact path="/board" component={Board} /> 
-            <Route exact path="/board/list" component={List} /> 
+            <Switch><Route exact path="/board" component={Board} /> </Switch>
+            <Switch><Route exact path="/board/list" component={List} /> </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
