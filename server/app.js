@@ -44,6 +44,9 @@ mongoose
   require("./config/passport")(passport);
   app.use("/users", users);
   app.use("/boards", boards);
+  app.get('/',(req,res) => {
+    res.send("hello world");
+  })
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname , '../client/build/index.html'));
   });
