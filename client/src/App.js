@@ -42,15 +42,16 @@ class App extends Component {
           <Switch>
               <PrivateNavbar  component={Navbar} />
             </Switch>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />            
-            <Route exact path="/verify" component={Verify} /> 
-            <Route exact path="/Generate" component={Generate} /> 
-            <Route exact path="/update" component={Changepass} /> 
-            <Route exact path="/board" component={Board} /> 
-            <Route exact path="/board/list" component={List} /> 
+            <Route exact path="https://morning-fjord-39504.herokuapp.com" component={Register} />
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/register" component={Register} />
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/login" component={Login} />            
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/verify" component={Verify} /> 
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/Generate" component={Generate} /> 
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/update" component={Changepass} /> 
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/board" component={Board} /> 
+            <Route exact path="https://morning-fjord-39504.herokuapp.com/board/list" component={List} /> 
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="https://morning-fjord-39504.herokuapp.com/dashboard" component={Dashboard} />
             </Switch>
             
           </div>

@@ -22,7 +22,7 @@ class Navbar2 extends Component {
        <AppBar position="static" style={{backgroundColor:"white",width:"100%", align:"left"}}>
         <Toolbar>
             <Typography variant="h6"  style={{textAlign:"left", fontFamily:'Roboto'}}>
-            <Link to =  '/'>
+            <Link to =  'https://morning-fjord-39504.herokuapp.com/'>
             <Button style={{color:"black"}}> MyTrello </Button>
             </Link>
           </Typography>

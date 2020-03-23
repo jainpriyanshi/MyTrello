@@ -25,15 +25,15 @@ function Navbar() {
        <AppBar position="relative" style={{backgroundColor:"black" , width:"100%", align:"left"}}>
         <Toolbar>
             <Typography variant="h6" className={classes.title} style={{textAlign:"left", fontFamily:'Roboto'}}>
-            <Link to =  '/'>
+            <Link to =  'https://morning-fjord-39504.herokuapp.com'>
             <Button style={{color:"white"}}>  MyTrello </Button>
             </Link>
           </Typography>
           
-          <Link to =  '/register'>
+          <Link to =  'https://morning-fjord-39504.herokuapp.com/register'>
           <Button style={{color:"white"}}> Register</Button>
           </Link>
-          <Link to =  '/login'>
+          <Link to =  'https://morning-fjord-39504.herokuapp.com/login'>
           <Button style={{color:"white"}}> Login </Button>
           </Link>
         </Toolbar>

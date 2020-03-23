@@ -6,8 +6,8 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("/users/register", userData)
-    .then(res => history.push("/verify"))
+    .post("https://morning-fjord-39504.herokuapp.com/users/register", userData)
+    .then(res => history.push("https://morning-fjord-39504.herokuapp.com/verify"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -18,8 +18,8 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const verifyUser = (userData, history) => dispatch => {
   axios
-    .post("/users/verify", userData)
-    .then(res => history.push("/login"))
+    .post("https://morning-fjord-39504.herokuapp.com/users/verify", userData)
+    .then(res => history.push("https://morning-fjord-39504.herokuapp.com/login"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -29,8 +29,8 @@ export const verifyUser = (userData, history) => dispatch => {
 };
 export const GenerateOtp = (userData, history) => dispatch => {
   axios
-    .post("/users/generate", userData)
-    .then(res => history.push("/update"))
+    .post("https://morning-fjord-39504.herokuapp.com/users/generate", userData)
+    .then(res => history.push("https://morning-fjord-39504.herokuapp.com/update"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -40,8 +40,8 @@ export const GenerateOtp = (userData, history) => dispatch => {
 };
 export const updatepass = (userData, history) => dispatch => {
   axios
-    .post("/users/update", userData)
-    .then(res => history.push("/login"))
+    .post("https://morning-fjord-39504.herokuapp.com/users/update", userData)
+    .then(res => history.push("https://morning-fjord-39504.herokuapp.com/login"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -51,7 +51,7 @@ export const updatepass = (userData, history) => dispatch => {
 };
 export const loginUser = userData => dispatch => {
   axios
-    .post("/users/login", userData)
+    .post("https://morning-fjord-39504.herokuapp.com/users/login", userData)
     .then(res => {
       // Save to localStorage
 
