@@ -6,7 +6,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("/register", userData)
+    .post("users/register", userData)
     .then(res => history.push("/verify"))
     .catch(err =>
       dispatch({
@@ -18,7 +18,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const verifyUser = (userData, history) => dispatch => {
   axios
-    .post("/verify", userData)
+    .post("users/verify", userData)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
@@ -40,7 +40,7 @@ export const GenerateOtp = (userData, history) => dispatch => {
 };
 export const updatepass = (userData, history) => dispatch => {
   axios
-    .post("/update", userData)
+    .post("users/update", userData)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
