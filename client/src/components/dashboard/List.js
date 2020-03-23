@@ -33,7 +33,7 @@ class List extends Component {
     console.log(this.props.location.state.id);
     axios.get('/boards/gettask')
     .then((response) => {
-        this.setState({array : response.data});
+        this.setState({array : response.data});h
     });
    }
    fetch_data() {
