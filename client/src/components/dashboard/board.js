@@ -70,10 +70,10 @@ class Board extends Component {
    }
   render() {
     return (
-      <div>
-         <div class="card container col-lg-6 mx-auto center" >
+      <div class = "row">
+         <div class="card container col-lg-3 mx-auto center" >
            <div style={{marginTop: "50px" }}>
-          <h1> List </h1>
+          <h4> Things To do </h4>
             {this.fetch_data()}
             <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
             </div>
@@ -101,6 +101,25 @@ class Board extends Component {
                           </button>
             </form>
           </div>
+          
+
+          <div class="card container col-lg-3 mx-auto center" >
+           <div style={{marginTop: "50px" }}>
+          <h4> Things Doing </h4>
+            
+            <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
+            </div>
+            
+          </div>
+          <div class="card container col-lg-3 mx-auto center" >
+           <div style={{marginTop: "50px" }}>
+          <h4> Things Done </h4>
+            
+            <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
+            </div>
+            
+          </div>
+         
          
           </div>
   
