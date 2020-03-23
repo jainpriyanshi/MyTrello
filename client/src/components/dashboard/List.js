@@ -23,7 +23,7 @@ class List extends Component {
         console.log(task)
       axios
       .post("/boards/createtask", task)
-      .then(res => this.props.history.push("/patient/login"))
+      .then(res => this.props.history.push("/patient"))
       axios.get('/boards/gettask')
       .then((response) => {
           this.setState({array : response.data});
