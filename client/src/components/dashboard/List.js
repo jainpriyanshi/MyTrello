@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios"
-import {Link} from "react-router-dom";
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import AddIcon from '@material-ui/icons/Add';
 
 class List extends Component {
   state = {
@@ -33,7 +34,7 @@ class List extends Component {
     console.log(this.props.location.state.id);
     axios.get('/boards/gettask')
     .then((response) => {
-        this.setState({array : response.data});h
+        this.setState({array : response.data});
     });
    }
    fetch_data() {
@@ -51,10 +52,13 @@ class List extends Component {
                 
               <b style={{textSize: "20px"}}> {b.name} </b>
               
-              <Checkbox
-        defaultChecked
-        color="default"
-        inputProps={{ 'aria-label': 'checkbox with default color' }}
+              <FormControlLabel
+        control={
+          <Checkbox
+            name="checkedB"
+            color="primary"
+          />
+        }
       />
             </div>
             )
@@ -80,18 +84,12 @@ class List extends Component {
               />
               <label htmlFor="taskname">Enter Subtask</label>
               <br />
+              
                 <button
-                            style={{
-                              width: "150px",
-                              borderRadius: "3px",
-                              letterSpacing: "1.5px",
-                              marginTop: "3rem"
-                            }}
-                            className="btn btn-small waves-effect waves-light blue accent-3 mb-3"
-                            type="submit"
-                      
-                          >
-                            Add
+                  className="btn btn-small waves-effect waves-light blue accent-3 mb-3"
+                        type="submit"
+                          > 
+                            <AddIcon /> 
                           </button>
             </form>
           </div>

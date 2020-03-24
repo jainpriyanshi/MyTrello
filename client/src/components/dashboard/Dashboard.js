@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios"
 import {Link} from "react-router-dom";
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 class Dashboard extends Component {
   state = {
@@ -33,6 +36,19 @@ class Dashboard extends Component {
           this.setState({array : response.data});
       });
     };
+    onClick = (e,id) =>
+        {   
+            e.preventDefault();
+            const data= { id: this.props.auth.user.id , boardid: id};
+            console.log(data);
+            axios.post('/boards/acceptinvite',data)
+            .then(res => this.props.history.push("/patient/login"));
+            axios.get('/boards/getboards')
+            .then((response) => {
+             this.setState({array : response.data});
+      });
+            
+        }
 
    fetch_data() {
       var Board = [];
@@ -42,41 +58,64 @@ class Dashboard extends Component {
         if(arr._id===this.props.auth.user.id)
         {
           return(
-            board=Board.map((b) =>
-            <div id = {b.boardid} >
-              <b style={{textSize: "20px"}}> {b.name} </b>
-            
-              <Link to={{ pathname: '/board', state: { id: b.boardid} }}>
-              <button
-              style={{
-                width: "100px",
-                borderRadius: "1px",
-                letterSpacing: "1px",
-                marginTop: "1rem"
-               }}
-              type="submit"
-              className="btn btn-small waves-effect waves-light hoverable blue accent-3"
-              >
-              Enter
-             </button>
-             </Link>
+            board=Board.map((b) => {
+            if(b.accepted===true)
+            {
+              return(
+            <div class="card">
+            <div id = {b.boardid} class="mt-2 mb-2" >
 
+            <Link to={{ pathname: '/board', state: { id: b.boardid , name: b.name} }}>
+              <EditIcon type = "submit" color= "action"/>
+             </Link>
+              <b style={{textSize: "20px"}}> {b.name} </b>
             </div>
+            </div>
+              )
+            } }
             )
           )
         }
       })
    }
+   fetch_team() {
+    var Board = [];
+    var board =[];
+    return this.state.array.map(arr => {
+      Board=arr.boards;
+      if(arr._id===this.props.auth.user.id)
+      {
+        return(
+          board=Board.map((b) => {
+          if(b.accepted===false)  
+          {
+            return(
+          <div class="card">
+          <div id = {b.boardid} class="mt-2 mb-2" >
+
+          <FavoriteBorderIcon onClick={(event)=> {this.onClick(event,b.boardid)}}></FavoriteBorderIcon>
+            <b style={{textSize: "20px"}}> {b.name} </b>
+          </div>
+          </div>
+            )
+          } }
+          )
+        )
+      }
+    })
+ }
   render() {
     const { user } = this.props.auth;
     return (
-      <div>
-         <div class="card container col-lg-6 mx-auto center" >
-           <div style={{marginTop: "50px" }}>
-          <h1> Boards </h1>
+      <div class ="row ">
+         <div class="card container col-5 center mt-5" >
+            <h1 class="mt-4"> Boards </h1>
             {this.fetch_data()}
-            <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
-            <form  onSubmit={this.onSubmit} >
+          </div>
+            
+          <div class="card container col-4 center mt-5" >
+
+            <form  onSubmit={this.onSubmit} class="mt-5" >
             <input
                   onChange={this.onChange}
                   value={this.state.boardname}
@@ -85,24 +124,17 @@ class Dashboard extends Component {
               />
               <label htmlFor="boardname">Enter project</label>
               <br />
-                <button
-                            style={{
-                              width: "150px",
-                              borderRadius: "3px",
-                              letterSpacing: "1.5px",
-                              marginTop: "3rem"
-                            }}
-                            className="btn btn-small waves-effect waves-light blue accent-3 mb-3"
-                            type="submit"
-                      
-                          >
-                            Add
-                          </button>
+              <button
+                  className="btn btn-small waves-effect blue accent-3 mb-3"
+                  type="submit"> 
+                <AddIcon /> 
+              </button>
+              <br/>
+              <h2> Team Invites </h2>
+              {this.fetch_team()}
             </form>
             </div>
-          </div>
-          </div>
-  
+            </div>
     );
   }
 }

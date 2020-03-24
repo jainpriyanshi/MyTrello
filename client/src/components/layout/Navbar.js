@@ -26,15 +26,15 @@ function Navbar() {
         <Toolbar>
             <Typography variant="h6" className={classes.title} style={{textAlign:"left", fontFamily:'Roboto'}}>
             <Link to =  '/'>
-            <Button style={{color:"white"}}>  MyTrello </Button>
+             <b style={{color: "white"}}> MyTrello </b>
             </Link>
           </Typography>
           
           <Link to =  '/register'>
-          <Button style={{color:"white"}}> Register</Button>
+          <b style={{color: "white"}} class="mt-4 mr-4"> Register </b>
           </Link>
           <Link to =  '/login'>
-          <Button style={{color:"white"}}> Login </Button>
+          <b style={{color: "white"}} class="mt-4 mr-4"> Login </b>
           </Link>
         </Toolbar>
       </AppBar>

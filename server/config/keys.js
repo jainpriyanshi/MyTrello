@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: process.env.MONGOLAB_URI || "mongodb://rishipr:teams123@ds155815.mlab.com:55815/teams",
+  mongoURI: process.env.MONGOLAB_URI || "mongodb://localhost:27017",
   secretOrKey: process.env.SECRET || "secret"
   };

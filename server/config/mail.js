@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                    module.exports = {
+module.exports = {
     email: "noreplymailfortest@gmail.com",
-    pass: ""
-  };                                                                                                                                                                                                                                                                      
+    pass: "donotreply"
+  };                                                                 

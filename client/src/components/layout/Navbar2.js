@@ -21,11 +21,11 @@ class Navbar2 extends Component {
       <div style={{display: "flex"}} >
        <AppBar position="static" style={{backgroundColor:"white",width:"100%", align:"left"}}>
         <Toolbar>
-            <Typography variant="h6"  style={{textAlign:"left", fontFamily:'Roboto'}}>
-            <Link to =  '/'>
-            <Button style={{color:"black"}}> MyTrello </Button>
-            </Link>
+        <Link to =  '/'>
+            <Typography variant="h6"  style={{textAlign:"left", fontFamily:'Roboto' , color: "black"}}>
+              <b>     MyTrello </b> 
           </Typography>
+          </Link>
           <Typography variant="h6"  style={{marginLeft: "auto", color : "black" , fontFamily:'Roboto'}}>
             <b>Hey</b> {user.name.split(" ")[0]}
           </Typography>

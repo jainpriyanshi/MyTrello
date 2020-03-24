@@ -23,7 +23,6 @@ router.post("/createboard", (req, res) => {
         }
         User.findOneAndUpdate({_id: req.body.userid} , {$addToSet: {boards: obj} } ).then(user => {
           if(user){
-            
           }
         });
     });
@@ -77,8 +76,58 @@ router.post("/createboard", (req, res) => {
   router.get('/gettask', function(req, res){
     List.find({}).then(docs => {
       res.send(docs);
-      
     })
   });
+  router.post('/acceptinvite', function(req, res){
+    User.update(
+      { _id: req.body.id, 
+        boards: 
+            { $elemMatch: { boardid: req.body.boardid }}
+      },
+      { $set: 
+            { 'boards.$.accepted' : true 
+      }
+   },(error,result)=>{
+      if(error){  
+         //handle error
+      }
+      console.log(result);
+    } 
+    )
+});
+
+router.post("/createboard", (req, res) => {
+  const newBoard = new Board({
+      name: req.body.name        
+    });
+  newBoard.save(function(err,board){
+      console.log(board.id);
+      var obj = {
+        name: req.body.name,
+        boardid: board.id,
+        accepted: true
+      }
+      User.findOneAndUpdate({_id: req.body.userid} , {$addToSet: {boards: obj} } ).then(user => {
+        if(user){
+        }
+      });
+  });
+});
+
+
+router.post("/invitemember", (req, res) => {
+
+      var obj = {
+        name: req.body.boardname,
+        boardid: req.body.boardid,
+        accepted: false
+      }
+      console.log(obj);
+      User.findOneAndUpdate({email: req.body.email} , {$addToSet: {boards: obj} } ).then(user => {
+        if(user){
+        }
+      
+  });
+});
 
   module.exports = router;
