@@ -113,7 +113,7 @@ class Board extends Component {
       if(arr.boardid===this.props.location.state.id)
       {
         return(
-          <div class="overflow-auto">
+          <div class="overflow-auto msg">
              <b> {arr.name} </b>
              <p> {arr.text}</p>
           </div>
@@ -186,7 +186,7 @@ class Board extends Component {
             
           </div>
 
-          <div class="card container col-lg-3 overflow-auto"  >
+          <div class="card container col-lg-3 overflow-auto scroll"  >
            <div style={{marginTop: "50px" }}>
           <h4 class="center "> Chat </h4>
           <form  onSubmit={this.onMessageSubmit} >
