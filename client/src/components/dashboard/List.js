@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 class List extends Component {
   state = {
     array: [],
-    taskname: ""
+    taskname: "",
    };
    onChange = e => {
     this.setState({ [e.target.id]: e.target.value });

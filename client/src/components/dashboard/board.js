@@ -5,25 +5,34 @@ import axios from "axios"
 import {Link} from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
-import Icon from '@material-ui/core/Icon';
-
+import './board.css';
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:5000");
 class Board extends Component {
   state = {
     array: [],
     listname: "",
     email: "",
     boardname: "",
+    text: "",
+    messages: []
    };
+   
    componentDidMount() {
+     console.log(this.props);
+     socket.on("change_data", this.change_data);
     axios.get('/boards/getlist')
     .then((response) => {
         this.setState({array : response.data});
+    });
+    axios.get('/boards/getchat')
+    .then((response) => {
+        this.setState({messages : response.data});
     });
    }
    onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
     console.log(this.state);
-
     };
     onSubmit = e => {
       e.preventDefault();
@@ -40,6 +49,23 @@ class Board extends Component {
           this.setState({array : response.data});
       });
     };
+    onMessageSubmit = e => {
+      e.preventDefault();
+      const msg = {
+            text: this.state.text,
+           boardid: this.props.location.state.id,
+           name: this.props.auth.user.name
+        };
+        socket.emit("chat message" , msg);
+        this.setState({text: ""});
+    };
+    change_data = () =>{
+      console.log("data changed")
+      axios.get('/boards/getchat')
+    .then((response) => {
+        this.setState({messages : response.data});
+    });
+     }
     onInvite = e => {
       e.preventDefault();
       const list = {
@@ -78,10 +104,27 @@ class Board extends Component {
         }
       })
    }
+   fetch_msg() {
+    var List = [];
+    var list =[];
+    return this.state.messages.map(arr => {
+      List=arr.list;
+      
+      if(arr.boardid===this.props.location.state.id)
+      {
+        return(
+          <div class="overflow-auto msg">
+             <b> {arr.name} </b>
+             <p> {arr.text}</p>
+          </div>
+        )
+      }
+    })
+ }
   render() {
     return (
       <div class = "row">
-        <div class="card container col-lg-10 mx-auto center mt-2 mb-2"> 
+        <div class="card container col-lg-11 mx-auto center mt-2 mb-2"> 
         <form  onSubmit={this.onInvite} >
             <input
                   onChange={this.onChange}
@@ -100,7 +143,7 @@ class Board extends Component {
                           </button>
             </form>
         </div>
-         <div class="card container col-lg-3 mx-auto center" >
+         <div class="card container col-lg-2 overflow-auto center" >
            <div style={{marginTop: "50px" }}>
           <h4> Things To do </h4>
             {this.fetch_data()}
@@ -126,7 +169,7 @@ class Board extends Component {
           </div>
           
 
-          <div class="card container col-lg-3 mx-auto center" >
+          <div class="card container col-lg-2  center overflow-auto" >
            <div style={{marginTop: "50px" }}>
           <h4> Things Doing </h4>
             
@@ -134,11 +177,42 @@ class Board extends Component {
             </div>
             
           </div>
-          <div class="card container col-lg-3 mx-auto center" >
+          <div class="card container col-lg-2  center overflow-auto" >
            <div style={{marginTop: "50px" }}>
           <h4> Things Done </h4>
             
             <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
+            </div>
+            
+          </div>
+
+          <div class="card container col-lg-3 overflow-auto"  >
+           <div style={{marginTop: "50px" }}>
+          <h4 class="center "> Chat </h4>
+          <div class="overflow-auto container scroll" style={{maxHeight: "200px", bottom: "0px"}}>
+          {this.fetch_msg()}
+          </div>
+          <form  onSubmit={this.onMessageSubmit} >
+            <input
+                  onChange={this.onChange}
+                  value={this.state.text}
+                  id="text"
+                  type="text"
+                  autofocus="true"
+              />
+              <label htmlFor="boardname">Type Message</label>
+              <br />
+           
+              <button
+                  className="btn btn-small  waves-effect waves-light grey accent-3 mb-3"
+                        type="submit"
+                          > 
+                              <AddIcon /> 
+                          </button>
+            </form>
+            
+            <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
+          
             </div>
             
           </div>

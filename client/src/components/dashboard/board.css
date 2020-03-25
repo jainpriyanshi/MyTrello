@@ -1,0 +1,6 @@
+.scroll{
+    transform: scale(1,-1);
+}
+.msg{
+    transform: scale(1,-1);
+}

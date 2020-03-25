@@ -7,6 +7,7 @@ const isEmpty = require("is-empty");
 const keys = require("../../config/keys");
 
 const User = require ("../../models/User");
+const Chat = require ("../../models/Chat");
 const Board = require ("../../models/Board");
 const List = require ("../../models/List");
 
@@ -75,6 +76,11 @@ router.post("/createboard", (req, res) => {
   });
   router.get('/gettask', function(req, res){
     List.find({}).then(docs => {
+      res.send(docs);
+    })
+  });
+  router.get('/getchat', function(req, res){
+    Chat.find({}).then(docs => {
       res.send(docs);
     })
   });

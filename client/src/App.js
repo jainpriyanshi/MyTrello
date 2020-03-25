@@ -18,6 +18,9 @@ import PrivateNavbar from "./components/private-route/PrivateNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import Board from "./components/dashboard/board";
 import List from "./components/dashboard/List";
+
+
+
 if (localStorage.jwtToken) {
 
   const token = localStorage.jwtToken;
@@ -33,6 +36,8 @@ if (localStorage.jwtToken) {
     window.location.href = "./login";
   }
 }
+
+
 class App extends Component {
   render() {
     return (
@@ -47,7 +52,7 @@ class App extends Component {
             <Route exact path="/verify" component={Verify} /> 
             <Route exact path="/Generate" component={Generate} /> 
             <Route exact path="/update" component={Changepass} /> 
-            <Switch><PrivateRoute exact path="/board" component={Board} /> </Switch>
+            <Switch><PrivateRoute exact path="/board"  component={Board} /> </Switch>
             <Switch><PrivateRoute exact path="/board/list" component={List} /> </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
