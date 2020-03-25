@@ -139,7 +139,7 @@ class Board extends Component {
                   className="btn btn-small  waves-effect waves-light grey accent-3 mb-3"
                         type="submit"
                           > 
-                             
+                              <AddIcon /> 
                           </button>
             </form>
         </div>
@@ -199,13 +199,7 @@ class Board extends Component {
               />
               <label htmlFor="boardname">Type Message</label>
               <br />
-           
-              <button
-                  className="btn btn-small  waves-effect waves-light grey accent-3 mb-3"
-                        type="submit"
-                          > 
-                              <AddIcon /> 
-                          </button>
+  
             </form>
           <div class="overflow-auto container " style={{maxHeight: "200px", bottom: "0px"}}>
           {this.fetch_msg()}
