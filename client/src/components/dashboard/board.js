@@ -186,7 +186,7 @@ class Board extends Component {
             
           </div>
 
-          <div class="card container col-lg-3 overflow-auto scroll"  >
+          <div class="card container col-lg-3 overflow-auto"  >
            <div style={{marginTop: "50px" }}>
           <h4 class="center "> Chat </h4>
           <form  onSubmit={this.onMessageSubmit} >
@@ -201,7 +201,7 @@ class Board extends Component {
               <br />
   
             </form>
-          <div class="overflow-auto container " style={{maxHeight: "200px", bottom: "0px"}}>
+          <div class="overflow-auto container  scroll " style={{maxHeight: "200px", bottom: "0px"}}>
           {this.fetch_msg()}
           </div>
           
