@@ -139,7 +139,7 @@ class Board extends Component {
                   className="btn btn-small  waves-effect waves-light grey accent-3 mb-3"
                         type="submit"
                           > 
-                              <AddIcon /> 
+                             
                           </button>
             </form>
         </div>
