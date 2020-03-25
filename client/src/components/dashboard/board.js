@@ -113,7 +113,7 @@ class Board extends Component {
       if(arr.boardid===this.props.location.state.id)
       {
         return(
-          <div class="overflow-auto msg">
+          <div class="overflow-auto">
              <b> {arr.name} </b>
              <p> {arr.text}</p>
           </div>
@@ -189,9 +189,6 @@ class Board extends Component {
           <div class="card container col-lg-3 overflow-auto"  >
            <div style={{marginTop: "50px" }}>
           <h4 class="center "> Chat </h4>
-          <div class="overflow-auto container scroll" style={{maxHeight: "200px", bottom: "0px"}}>
-          {this.fetch_msg()}
-          </div>
           <form  onSubmit={this.onMessageSubmit} >
             <input
                   onChange={this.onChange}
@@ -210,6 +207,10 @@ class Board extends Component {
                               <AddIcon /> 
                           </button>
             </form>
+          <div class="overflow-auto container " style={{maxHeight: "200px", bottom: "0px"}}>
+          {this.fetch_msg()}
+          </div>
+          
             
             <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
           
