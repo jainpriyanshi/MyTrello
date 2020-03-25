@@ -9,6 +9,7 @@ import store from "./store";
 
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
+import layout from "./components/homepage/layout.jsx";
 import Verify from "./components/auth/Verify";
 import Generate from "./components/auth/generate";
 import Changepass from "./components/auth/changepass";
@@ -47,6 +48,7 @@ class App extends Component {
           <Switch>
               <PrivateNavbar  component={Navbar} />
             </Switch>
+            <Route exact path="/" component={layout} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />            
             <Route exact path="/verify" component={Verify} /> 
