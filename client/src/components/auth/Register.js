@@ -9,16 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
 
-var sectionStyle = {
-  position : 'absolute',
-  width: "100%",
-  height: "100%",
- background: `url(${process.env.PUBLIC_URL}/auth_bg.jpg)` ,
- backgroundPosition: 'center',
- backgroundSize: 'cover',
- backgroundRepeat: 'no-repeat'
-};
-
 class Register extends Component {
   constructor() {
     super();
@@ -69,7 +59,7 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div style= {sectionStyle}>
+      <div>
         <br></br>
         
       <div class="container">

@@ -38,6 +38,7 @@ router.post("/createboard", (req, res) => {
         var obj = {
           name: req.body.name,
           listid: list.id,
+          state: 1,
         }
         Board.findOneAndUpdate({_id: req.body.boardid} , {$addToSet: {list: obj} } ).then(user => {
           if(user){
@@ -100,6 +101,24 @@ router.post("/createboard", (req, res) => {
       console.log(result);
     } 
     )
+});
+router.post('/changestate', function(req, res){
+  Board.update(
+    { _id: req.body.boardid, 
+      list: 
+          { $elemMatch: { listid: req.body.listid }}
+    },
+    { $set: 
+          { 'list.$.state' : req.body.index 
+    }
+ },(error,result)=>{
+    if(error){  
+       //handle error
+    }
+    console.log(result);
+  } 
+  )
+  
 });
 
 router.post("/createboard", (req, res) => {

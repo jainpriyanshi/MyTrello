@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 class Navbar2 extends Component {
   onLogoutClick = e => {
@@ -31,16 +30,12 @@ class Navbar2 extends Component {
           </Typography>
           <button
               style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-                marginBottom : "1rem",
-                marginRight: "1rem",
-                marginLeft: "1rem"
+                marginLeft: "5px",
+                borderRadius: "3px"
+               
               }}
               onClick={this.onLogoutClick}
-              class="btn btn-outline-danger">
+              class="btn btn-primary">
             >
               Logout
             </button>

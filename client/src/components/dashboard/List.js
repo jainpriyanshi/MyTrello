@@ -5,6 +5,7 @@ import axios from "axios"
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AddIcon from '@material-ui/icons/Add';
+import Avatar from '@material-ui/core/Avatar';
 
 class List extends Component {
   state = {
@@ -28,7 +29,9 @@ class List extends Component {
       axios.get('/boards/gettask')
       .then((response) => {
           this.setState({array : response.data});
+          this.setState({taskname : ""});
       });
+     
     };
    componentDidMount() {
     console.log(this.props.location.state.id);
@@ -53,13 +56,14 @@ class List extends Component {
               <b style={{textSize: "20px"}}> {b.name} </b>
               
               <FormControlLabel
-        control={
-          <Checkbox
-            name="checkedB"
-            color="primary"
-          />
-        }
-      />
+                control={
+                  <Checkbox
+                    name="checkedB"
+                    color="primary"
+                  />
+                }
+              />
+             
             </div>
             )
           )
@@ -69,28 +73,30 @@ class List extends Component {
   render() {
     return (
       <div>
-         <div class="card container col-lg-6 mx-auto center" >
+         <div class="card container col-lg-6 mx-auto center mt-4" >
            <div style={{marginTop: "50px" }}>
           <h1> check list </h1>
             {this.fetch_data()}
             <div style={{marginTop: "30px" , marginBottom: "20px"}}> </div>
             </div>
-            <form  onSubmit={this.onSubmit} >
+            <form  onSubmit={this.onSubmit} style={{display: "flex" , marginBottom: "10px"}}>
             <input
                   onChange={this.onChange}
                   value={this.state.taskname}
                   id="taskname"
                   type="text"
+                  placeholder="Enter Subtask"
               />
-              <label htmlFor="taskname">Enter Subtask</label>
+            
               <br />
               
-                <button
-                  className="btn btn-small waves-effect waves-light blue accent-3 mb-3"
-                        type="submit"
-                          > 
-                            <AddIcon /> 
-                          </button>
+              <Avatar className="blue center mt-2" >
+              <button
+                  className="btn "
+                  type="submit"> 
+                <AddIcon /> 
+              </button>
+              </Avatar>
             </form>
           </div>
           </div>
@@ -110,3 +116,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps
 )(List);
+

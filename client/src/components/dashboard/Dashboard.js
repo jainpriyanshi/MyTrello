@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import axios from "axios"
 import {Link} from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+import Avatar from '@material-ui/core/Avatar';
+import EditIcon from '@material-ui/icons/Pageview';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 class Dashboard extends Component {
@@ -62,13 +63,15 @@ class Dashboard extends Component {
             if(b.accepted===true)
             {
               return(
-            <div class="card">
-            <div id = {b.boardid} class="mt-2 mb-2" >
+            <div class="card" style={{display: "flex"}}>
+            <div id = {b.boardid} class="mt-2 mb-2" style={{display: "flex"}} >
 
-            <Link to={{ pathname: '/board', state: { id: b.boardid , name: b.name} }}>
-              <EditIcon type = "submit" color= "action"/>
+            <Link to={{ pathname: '/board', state: { id: b.boardid , name: b.name} }} style={{marginLeft: "35%"}}>
+            <Avatar className="blue center" >
+                <EditIcon />
+              </Avatar>
              </Link>
-              <b style={{textSize: "20px"}}> {b.name} </b>
+              <b style={{fontSize: "19px", fontFamily: "roboto" , marginLeft: "6%" , marginTop: "7px"}}> {b.name} </b>
             </div>
             </div>
               )
@@ -105,34 +108,44 @@ class Dashboard extends Component {
     })
  }
   render() {
-    const { user } = this.props.auth;
     return (
       <div class ="row ">
          <div class="card container col-5 center mt-5" >
             <h1 class="mt-4"> Boards </h1>
             {this.fetch_data()}
           </div>
-            
-          <div class="card container col-4 center mt-5" >
-
-            <form  onSubmit={this.onSubmit} class="mt-5" >
+          <div class="col-4 container" >
+          <div class="card container col-12 center mt-5" >
+            <form  
+            onSubmit={this.onSubmit} 
+            class="mt-3" 
+            style={{display: "flex"}} 
+            >
+              <div className="input-field col s12">
             <input
                   onChange={this.onChange}
                   value={this.state.boardname}
                   id="boardname"
                   type="text"
+                  placeholder="Enter New Project Name"
               />
-              <label htmlFor="boardname">Enter project</label>
-              <br />
+              </div>
+              <Avatar className="blue center mt-3" >
               <button
-                  className="btn btn-small waves-effect blue accent-3 mb-3"
+                  className="btn "
                   type="submit"> 
                 <AddIcon /> 
               </button>
+              </Avatar>
               <br/>
-              <h2> Team Invites </h2>
-              {this.fetch_team()}
+             
             </form>
+           
+            </div>
+            <div class="card container col-12 center mt-5" >
+            <h2 class="mt-2"> Team Invites </h2>
+              {this.fetch_team()}
+            </div>
             </div>
             </div>
     );

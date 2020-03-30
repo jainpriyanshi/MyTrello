@@ -11,6 +11,9 @@ const BoardSchema = new Schema({
           },
           listid: {
              type: String
+          },
+          state: {
+              type: String
           }
       }]
 });
