@@ -12,10 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
-const socket = io.connect("https://morning-fjord-39504.herokuapp.com");
-
+const socket = io.connect("http://localhost:3000");
 
 class Board extends Component {
   state = {
